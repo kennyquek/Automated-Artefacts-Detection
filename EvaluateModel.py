@@ -11,7 +11,9 @@ image_type = "angio"
 PATH = "C:/Users/kenny/Desktop/Whole " + image_type
 fold_num = "2"
 
-CHECKPOINT_PATH = "C:/Users/kenny/Desktop/checkpoint/whole model/pretrained_resnet50_model_stuctural.h5"
+H5_FILE_NAME = "pretrained_resnet50_model_stuctural.h5"
+
+CHECKPOINT_PATH = "C:/Users/kenny/Desktop/checkpoint/whole model/" + H5_FILE_NAME
 test_dir = "C:/Users/kenny/Desktop/dataset angio/test"
 IMG_HEIGHT = 100
 IMG_WIDTH = 100
