@@ -11,7 +11,7 @@ image_type = "angio"
 PATH = "C:/Users/kenny/Desktop/Whole " + image_type
 fold_num = "2"
 
-checkpoint_path = "C:/Users/kenny/Desktop/checkpoint/whole model/pretrained_resnet50_model_stuctural.h5"
+CHECKPOINT_PATH = "C:/Users/kenny/Desktop/checkpoint/whole model/pretrained_resnet50_model_stuctural.h5"
 test_dir = "C:/Users/kenny/Desktop/dataset angio/test"
 IMG_HEIGHT = 100
 IMG_WIDTH = 100
@@ -19,40 +19,10 @@ IMG_WIDTH = 100
 num_defects_val = 42
 num_normal_val = 42
 
-# model = Sequential([
-#     Conv2D(16, 3, padding='same', activation='relu', input_shape=(IMG_HEIGHT, IMG_WIDTH ,3)),
-#     MaxPooling2D(),
-#     Conv2D(32, 3, padding='same', activation='relu'),
-#     MaxPooling2D(),
-#     Conv2D(64, 3, padding='same', activation='relu'),
-#     MaxPooling2D(),
-#     Flatten(),
-#     Dense(512, activation='relu'),
-#     Dense(1, activation='sigmoid')
-# ])
-#
-# model.load_weights(checkpoint_path)
-#
-# model.compile(optimizer='adam',
-#               loss='binary_crossentropy',
-#               metrics=['accuracy'])
-
-model = tf.keras.models.load_model(checkpoint_path)
-
-# test_image_generator = ImageDataGenerator(rescale=1./255) # Generator for our validation data
-#
-# test_data_gen = test_image_generator.flow_from_directory(
-#                                                            directory=test_dir,
-#                                                            shuffle=True,
-#                                                            target_size=(IMG_HEIGHT, IMG_WIDTH),
-#                                                            class_mode='binary')
-#
-# loss,acc = model.evaluate(test_data_gen, verbose=2)
-# print("Restored model, accuracy: {:5.2f}%".format(100*acc))
+model = tf.keras.models.load_model(CHECKPOINT_PATH)
 
 # {'defects': 0, 'normal': 1}
 # Predicting normal images
-
 
 main_path = "C:/Users/kenny/Desktop/Whole " + image_type + "/validation_" + fold_num  + "/defects/"
 files_name_array = os.listdir(main_path)
@@ -100,7 +70,6 @@ for normal_file_name in files_name_array:
     result = model.predict(test_image)
     class_index = (result[0][0])
 
-    print('Predicted:', result)
     if (class_index > 0.5):
         points += 1
     else:
