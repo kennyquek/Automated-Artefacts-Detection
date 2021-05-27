@@ -30,3 +30,5 @@ cv.normalize(img, img, 0, 255, cv.NORM_MINMAX)
 
 dest_path = "C:/Users/kenny/PycharmProjects/Tensorflow/venv/testt_norm.bmp"
 cv.imwrite(dest_path, img)
+
+
